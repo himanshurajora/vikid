@@ -1,0 +1,28 @@
+{
+  "name": "vikid",
+  "version": "0.0.0",
+  "description": "The Official Vikid compiler",
+  "main": "./dist/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest",
+    "start": "node ./dist/index.js",
+    "dev": "nodemon ./dist/index.js"
+  },
+  "keywords": [
+    "vikid",
+    "markdown",
+    "html",
+    "parser"
+  ],
+  "author": "Himanshu Jangid",
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^4.6.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
