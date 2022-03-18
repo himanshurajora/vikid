@@ -20,12 +20,22 @@
 <h4>The Subheading Placeholder</h4>
  */
 
+import { TokenType } from "../Lexer/tokens"
+
 
 export const Transpiler = (ast: AST): string => {
-    let html = ""
-    ast.children.forEach(child => {
-        html+= `<${child.tag}>${child.value}</${child.tag}>\n`
-    })
-    return html
+  let html = ""
+  ast.children.forEach(child => {
+    if (child.type === "LIST") {
+      html += `<ul>\n`
+      child.children.forEach(listItem => {
+        html += `\t<li>${listItem.value}</li>\n`
+      })
+      html += `</ul>\n`
+    } else {
+      html += `<${child.tag}>${child.value}</${child.tag}>\n`
+    }
+  })
+  return html
 }
 

@@ -3,6 +3,8 @@ export const ValidTokens = [
     "!!",
     "!!!",
     "$",
+    '-',
+    "*"
 ]
 
 export enum TokenType {
@@ -10,6 +12,8 @@ export enum TokenType {
     HEADING = "HEADING",
     SUBHEADING = "SUBHEADING",
     PARAGRAPH = "PARAGRAPH",
+    LIST_ITEM = "LIST_ITEM",
+    BOLD = "BOLD",
 }
     
 export const TokenTypeMap = {
@@ -17,4 +21,6 @@ export const TokenTypeMap = {
     "!!": TokenType.HEADING,
     "!!!": TokenType.SUBHEADING,
     "$": TokenType.PARAGRAPH,
+    "-": TokenType.LIST_ITEM,
+    "*": TokenType.BOLD
 }

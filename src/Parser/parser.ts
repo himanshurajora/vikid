@@ -19,39 +19,49 @@
  * }
  */
 
- export const Parser = (tokens: Tokens): AST => {
+import { TagsMap } from "./tags"
+
+export const Parser = (tokens: Tokens): AST => {
     const ast: AST = {
         type: "DOCUMENT",
         children: []
     }
+    const prevToken: { type: string, value: string, parent: AST } = {
+        type: "",
+        value: "",
+        parent: null
+    }
 
-    tokens.forEach(token => {
-        if (token.type === "TITLE") {
-            ast.children.push({
-                type: "TITLE",
-                value: token.value,
-                tag: "h1"
-            })
-        } else if (token.type === "HEADING") {
-            ast.children.push({
-                type: "HEADING",
-                value: token.value,
-                tag: "h3"
-            })
-        } else if (token.type === "SUBHEADING") {
-            ast.children.push({
-                type: "SUBHEADING",
-                value: token.value,
-                tag: "h4"
-            })
-        } else if(token.type === "PARAGRAPH") {
-            ast.children.push({
-                type: "PARAGRAPH",
-                value: token.value,
-                tag: "p"
-            })
+    tokens.forEach((token, index) => {
+        prevToken.type = token.type
+        prevToken.value = token.value
+
+        switch (token.type) {
+            case "LIST_ITEM":
+                if (prevToken.parent?.type === "LIST") {
+                    prevToken.parent.children.push(token)
+                } else {
+                    // create new list 
+                    const list: Child = {
+                        type: "LIST",
+                        children: [{type: token.type, value: token.value, tag: TagsMap[token.type]}]
+                    }
+                    
+                    ast.children.push(list)
+                    prevToken.parent = list
+                }
+                break
+
+            default:
+                prevToken.parent = ast
+                ast.children.push({
+                    type: "TITLE",
+                    value: token.value,
+                    tag: TagsMap[token.type]
+                })
+                break
         }
     })
 
-    return ast;
+    return ast
 }

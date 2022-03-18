@@ -12,7 +12,8 @@ declare interface AST {
 }
 
 declare interface Child {
-    type?:  string;
+    type:  string;
     value?: string;
     tag?: string;
+    children ?: Child[];
 }
