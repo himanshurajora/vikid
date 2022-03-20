@@ -52,6 +52,20 @@ export const Parser = (tokens: Tokens): AST => {
                 }
                 break
 
+            case "ORDERED_LIST_ITEM":
+                if (prevToken.parent?.type === "ORDERED_LIST") {
+                    prevToken.parent.children.push(token)
+                } else {
+                    // create new list
+                    const list: Child = {
+                        type: "ORDERED_LIST",
+                        children: [{type: token.type, value: token.value, tag: TagsMap[token.type]}]
+                    }
+                    ast.children.push(list)
+                    prevToken.parent = list
+                }
+                break
+                
             default:
                 prevToken.parent = ast
                 ast.children.push({

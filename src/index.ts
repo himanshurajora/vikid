@@ -12,6 +12,12 @@ $ Paragraph
 * Bold
 - List Item 2
 - List Item 3
+** Hello There
+
+1. Hello 
+1. By There
+4. Hell My Dear
+. heelo
 `
 console.clear()
 const tokens = Tokenizer(sample)

@@ -32,7 +32,14 @@ export const Transpiler = (ast: AST): string => {
         html += `\t<li>${listItem.value}</li>\n`
       })
       html += `</ul>\n`
-    } else {
+    } else if (child.type === "ORDERED_LIST") {
+      html += `<ol>\n`
+      child.children.forEach(listItem => {
+        html += `\t<li>${listItem.value}</li>\n`
+      })
+      html += `</ol>\n`
+    }
+    else {
       html += `<${child.tag}>${child.value}</${child.tag}>\n`
     }
   })

@@ -7,5 +7,7 @@ export const TagsMap = {
     "SUBHEADING": 'h4',
     "PARAGRAPH": 'p',
     'LIST_ITEM': 'li',
-    "BOLD": 'b'
+    'ORDERED_LIST_ITEM': 'li',
+    "BOLD": 'b',
+    "ITALIC": 'i'
 }
