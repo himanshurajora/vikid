@@ -65,6 +65,24 @@ export const Parser = (tokens: Tokens): AST => {
                     prevToken.parent = list
                 }
                 break
+            
+            case "LINK":
+                // the format is [https://thisisurl.com] This is url
+                // extract https://thisisurl.com, and This is url from it
+                prevToken.parent = ast 
+                const parsed = token.value.match(/\[(.*)\](.*)/)
+                const link = parsed?.[1]
+                const text = parsed?.[2]
+
+                const linkNode: Child = {
+                    type: "LINK",
+                    value: text.trim(),
+                    attrs: [{key: "href", value: link.trim()}],
+                    tag: TagsMap[token.type]
+                }
+
+                ast.children.push(linkNode)            
+                break
                 
             default:
                 prevToken.parent = ast

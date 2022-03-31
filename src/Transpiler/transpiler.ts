@@ -38,6 +38,8 @@ export const Transpiler = (ast: AST): string => {
         html += `\t<li>${listItem.value}</li>\n`
       })
       html += `</ol>\n`
+    } else if (child.type === "LINK"){
+      html += `<${child.tag} href="${child.attrs[0].value}">${child.value}<${child.tag}>\n`
     }
     else {
       html += `<${child.tag}>${child.value}</${child.tag}>\n`

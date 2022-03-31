@@ -3,7 +3,6 @@
 export const orderedListRule = /[0-9]+\./
 
 export const isOrderedListItem = (value: string): boolean => {
-    console.log("value is", value)
     return orderedListRule.test(value)
 }
 
@@ -20,7 +19,9 @@ export const ValidTokens = [
     "$",
     '-',
     "*",
-    "**"
+    "**",
+    "***",
+    "@",
 ]
 
 export enum TokenType {
@@ -34,6 +35,8 @@ export enum TokenType {
     ORDERED_LIST_ITEM = "ORDERED_LIST",
     BOLD = "BOLD",
     ITALIC = "ITALIC",
+    BLOCK_QUOTE = "BLOCK_QUOTE",
+    LINK = "LINK"
 }
     
 export const TokenTypeMap = {
@@ -43,5 +46,7 @@ export const TokenTypeMap = {
     "$": TokenType.PARAGRAPH,
     "-": TokenType.LIST_ITEM,
     "*": TokenType.BOLD,
-    "**": TokenType.ITALIC
+    "**": TokenType.ITALIC,
+    "***": TokenType.BLOCK_QUOTE,
+    "@": TokenType.LINK
 }

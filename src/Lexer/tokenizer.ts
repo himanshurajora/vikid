@@ -34,7 +34,6 @@ export const Tokenizer = (input: string): Tokens => {
         if (isValidToken(value)) {
             throw new Error(`Syntex Error - Invalid token type: ${type}`)
         } else {
-            console.log(isOrderedListItem(type))
             let type_target = isOrderedListItem(type) ? "ORDERED_LIST_ITEM" : TokenTypeMap[type]
             if (type_target) {
                 tokens.push(

@@ -9,5 +9,7 @@ export const TagsMap = {
     'LIST_ITEM': 'li',
     'ORDERED_LIST_ITEM': 'li',
     "BOLD": 'b',
-    "ITALIC": 'i'
+    "ITALIC": 'i',
+    "BLOCK_QUOTE": 'blockquote',
+    "LINK": 'a'
 }
